@@ -1,0 +1,3 @@
+[submodule "pack/base/start/nerdtree"]
+	path = pack/base/start/nerdtree
+	url = https://github.com/preservim/nerdtree.git
