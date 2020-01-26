@@ -1,3 +1,21 @@
 [submodule "pack/base/start/nerdtree"]
 	path = pack/base/start/nerdtree
 	url = https://github.com/preservim/nerdtree.git
+[submodule "pack/base/start/ultisnips"]
+	path = pack/base/start/ultisnips
+	url = https://github.com/SirVer/ultisnips.git
+[submodule "pack/base/start/syntastic"]
+	path = pack/base/start/syntastic
+	url = https://github.com/vim-syntastic/syntastic.git
+[submodule "pack/base/start/youcompleteme"]
+	path = pack/base/start/youcompleteme
+	url = https://github.com/ycm-core/YouCompleteMe.git
+[submodule "pack/base/start/vim-fugitive"]
+	path = pack/base/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive.git
+[submodule "pack/base/start/vim-airline"]
+	path = pack/base/start/vim-airline
+	url = https://github.com/vim-airline/vim-airline.git
+[submodule "pack/base/start/vim-snippets"]
+	path = pack/base/start/vim-snippets
+	url = https://github.com/honza/vim-snippets.git
