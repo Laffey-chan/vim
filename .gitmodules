@@ -8,7 +8,7 @@
 	path = pack/base/start/syntastic
 	url = https://github.com/vim-syntastic/syntastic.git
 [submodule "pack/base/start/youcompleteme"]
-	path = pack/base/start/youcompleteme
+	path = pack/base/start/YouCompleteMe
 	url = https://github.com/ycm-core/YouCompleteMe.git
 [submodule "pack/base/start/vim-fugitive"]
 	path = pack/base/start/vim-fugitive
@@ -29,7 +29,7 @@
 	path = pack/themes/start/vim-deep-space
 	url = https://github.com/tyrannicaltoucan/vim-deep-space.git
 [submodule "pack/themes/start/alduin"]
-	path = pack/themes/start/alduin
+	path = pack/themes/Alduin
 	url = https://github.com/AlessandroYorba/Alduin.git
 [submodule "pack/themes/start/dracula"]
 	path = pack/themes/start/dracula
