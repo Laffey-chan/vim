@@ -29,7 +29,7 @@
 	path = pack/themes/start/vim-deep-space
 	url = https://github.com/tyrannicaltoucan/vim-deep-space.git
 [submodule "pack/themes/start/alduin"]
-	path = pack/themes/Alduin
+	path = pack/themes/start/Alduin
 	url = https://github.com/AlessandroYorba/Alduin.git
 [submodule "pack/themes/start/dracula"]
 	path = pack/themes/start/dracula
