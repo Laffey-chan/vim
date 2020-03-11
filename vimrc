@@ -4,27 +4,36 @@ if empty(glob('~/.vim/swap'))
     silent !mkdir -p ~/.vim/swap
 endif
 " create backup directory
-if empty(glob('~/.vim/backup'))
+if empty(glob('~/vim/backup'))
     silent !mkdir -p ~/.vim/backup
 endif
 
-
+"set encoding=UTF-8
 
 set directory=~/.vim/swap
 set backupdir=~/.vim/backup
+set viminfo+='1000,n~/.vim/viminfo
 
 
 
-set expandtab
+"set expandtab
 set number
 syntax on
-set tabstop=2
-set shiftwidth=4
+set tabstop=4
+"set shiftwidth=4
 set background=dark
 set nowrap
 set timeoutlen=1000 ttimeoutlen=0
+set wildmode=longest,list
 
-colorscheme alduin
+" URxvt scrolling
+set mouse=a
+
+
+colorscheme desert
+
+
+hi QuickFixLine ctermfg=white ctermbg=red  
 
 
 " show NERDTree
@@ -57,6 +66,15 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 
+augroup filetypedetect
+  au BufRead,BufNewFile *.menu set syntax=xml
+augroup END
+
+
+
+vnoremap <C-C> :w !xclip -selection clipboard<CR>
+
+
 " move line with shift+up/down
 inoremap <S-Up> <Esc>:m-2<CR> i
 inoremap <S-Down> <Esc>:m+<CR> i
@@ -78,3 +96,35 @@ nnoremap <silent> <A-Right> :wincmd l<CR>
 " close if NERDTree is last window
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+
+
+
+" air-line
+let g:airline_powerline_fonts = 1
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" airline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
