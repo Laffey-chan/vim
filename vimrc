@@ -4,7 +4,7 @@ if empty(glob('~/.vim/swap'))
     silent !mkdir -p ~/.vim/swap
 endif
 " create backup directory
-if empty(glob('~/vim/backup'))
+if empty(glob('~/.vim/backup'))
     silent !mkdir -p ~/.vim/backup
 endif
 
