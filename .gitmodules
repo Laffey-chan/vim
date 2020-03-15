@@ -25,3 +25,6 @@
 [submodule "pack/themes/start/vim-deep-space"]
 	path = pack/themes/start/vim-deep-space
 	url = https://github.com/tyrannicaltoucan/vim-deep-space.git
+[submodule "pack/base/start/vim-todo-lists"]
+	path = pack/base/start/vim-todo-lists
+	url = https://github.com/aserebryakov/vim-todo-lists.git
