@@ -1,0 +1,45 @@
+snippet getopts "Description" b
+while getopts "o" opt; do
+	case "$opt" in
+		o)  ;;
+		* )		echo "Option does not exist: '$OPTARG'"; exit 1;;
+	esac
+done
+shift $(($OPTIND-1))
+endsnippet
+
+
+snippet getopt "Description" b
+PARAMS="$(getopt -o h -l prefix: --name "$(basename "\$0")" -- "$@")"
+eval set -- "$PARAMS"
+
+while true; do
+	case "\$1" in
+		-h)			show_help; exit 0;;	
+		--prefix)	VARIABLE=\$2; shift 2;;
+		--)			shift; break;;
+	esac
+done
+
+[ $# -eq 0 ] && exit
+endsnippet
+
+snippet fun "function" b
+function ${1:function_name}() {
+	${0:return 1}
+}
+endsnippet
+
+snippet stat_file "stat_file" b
+# Check if file '$1' was '$2' '$3' seconds ago
+function stat_file() {
+	[[ ! -f "\$2" ]] && return 1
+	# Stat format options
+	# %W     time of file birth; 0 if unknown
+	# %X     time of last access
+	# %Y     time of last data modification
+	# %Z     time of last status change
+
+	[[ $(date +%s) < $(( $(stat --format=%y "\$1") + "\$3")) ]] && return 0 || return 1
+}
+endsnippet
