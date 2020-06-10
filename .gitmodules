@@ -8,7 +8,7 @@
 	path = pack/base/start/syntastic
 	url = https://github.com/vim-syntastic/syntastic.git
 [submodule "pack/base/start/youcompleteme"]
-	path = pack/base/start/YouCompleteMe
+	path = pack/heavy/start/YouCompleteMe
 	url = https://github.com/ycm-core/YouCompleteMe.git
 [submodule "pack/base/start/vim-fugitive"]
 	path = pack/base/start/vim-fugitive
