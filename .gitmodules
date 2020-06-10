@@ -28,3 +28,15 @@
 [submodule "pack/base/start/vim-todo-lists"]
 	path = pack/base/start/vim-todo-lists
 	url = https://github.com/aserebryakov/vim-todo-lists.git
+[submodule "pack/base/start/vim-markdown"]
+	path = pack/base/start/vim-markdown
+	url = https://github.com/plasticboy/vim-markdown.git
+[submodule "pack/base/start/vim-orgmode"]
+	path = pack/base/start/vim-orgmode
+	url = https://github.com/jceb/vim-orgmode.git
+[submodule "pack/base/start/vim-speeddating"]
+	path = pack/base/start/vim-speeddating
+	url = https://github.com/tpope/vim-speeddating.git
+[submodule "pack/base/start/vim-easy-align"]
+	path = pack/base/start/vim-easy-align
+	url = https://github.com/junegunn/vim-easy-align.git
