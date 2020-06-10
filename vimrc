@@ -16,7 +16,7 @@ set viminfo+='1000,n~/.vim/viminfo
 
 colorscheme desert
 "set expandtab
-set number
+set relativenumber number
 syntax on
 set shiftwidth=4
 set tabstop=4
@@ -28,43 +28,14 @@ set wildmode=longest,list
 " URxvt scrolling
 set mouse=a
 
+filetype plugin on
 
-" Plugin settings
-"" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
+let maplocalleader="ö"
+let mapleader="ä"
 
-"" ultisnips
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-"" syntastic
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-"" airline
-""" cant read error messages
-hi QuickFixLine ctermfg=white ctermbg=black 
-let g:airline_powerline_fonts = 1
-
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-
-""" symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.whitespace = 'Ξ'
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
+for f in split(glob('~/.vim/vimrc.d/*.vim'), '\n')
+	exe 'source' f
+endfor
 
 
 " Filetypes
@@ -72,42 +43,69 @@ augroup filetypedetect
   au BufRead,BufNewFile *.menu set syntax=xml
 augroup END
 
-
-" Mappings
-"" Normal mode mappings
-""" move windows with alt + arrow
-nnoremap <silent> <A-Up> :wincmd k<CR>
-nnoremap <silent> <A-Down> :wincmd j<CR>
-nnoremap <silent> <A-Left> :wincmd h<CR>
-nnoremap <silent> <A-Right> :wincmd l<CR>
-""" clear and execute current file
-noremap <F4>  :! clear && %:p 
-""" execute commands
-noremap <F3> :! 
-""" show NERDTree
-noremap <F2> :NERDTreeToggle<CR>
-
-"" Visual mode mappings
-""" select for argument 
-vnoremap <C-F> y :! <C-R>" <HOME><Right>
-" copy to system clipboard
-vnoremap <C-C> y :call system('xclip -selection clipboard', @0)<CR>
-
-"" Inset mode mappings 
-""" move line with shift + up/down
-inoremap <S-Up>   <Esc>:m-2<CR> i
-inoremap <S-Down> <Esc>:m+<CR> i
-""" change window with alt+arrow 
-inoremap <silent> <A-Up>    <ESC> :wincmd k \| :startinsert<CR>
-inoremap <silent> <A-Down>  <ESC> :wincmd j \| :startinsert<CR>
-inoremap <silent> <A-Left>  <ESC> :wincmd h \| :startinsert<CR>
-inoremap <silent> <A-Right> <ESC> :wincmd l \| :startinsert<CR>
-
 " Commands
 "" Set background for transparency
 command BGTransparent highlight Normal guibg=NONE ctermbg=NONE
 ":BGTransparent
 
+
+function! SyntasticCheckHook(errors)
+	if !empty(a:errors)
+		let g:syntastic_loc_list_height = min([len(a:errors), 5])
+	endif
+endfunction
+
+
+function! FunTranslate() range
+	echo "firstline ".@
+endfunction
+function! PrintGivenRange() range
+    " Get the line and column of the visual selection marks
+    let [lnum1, col1] = getpos("'<")[1:2]
+    let [lnum2, col2] = getpos("'>")[1:2]
+
+    " Get all the lines represented by this range
+    let lines = getline(lnum1, lnum2)         
+
+    " The last line might need to be cut if the visual selection didn't end on the last column
+    let lines[-1] = lines[-1][: col2 - (&selection == 'inclusive' ? 1 : 2)]
+    " The first line might need to be trimmed if the visual selection didn't start on the first column
+    let lines[0] = lines[0][col1 - 1:]
+
+    " Get the desired text
+    let selectedText = join(lines, "\n")         
+
+    " Do the call to tmux
+    let lineCount = lnum2 - lnum1 + 2
+    let translation = system("crow " . selectedText . "| tail -n+" . lineCount)
+    echo translation
+endfunction
+
+function HTMLentities()
+	execute a:firstline . "," . a:lastline . 's/&nbsp;/ /g'
+	execute a:firstline . "," . a:lastline . 's/&lt;/</g'
+	execute a:firstline . "," . a:lastline . 's/&gt;/>/g'
+	execute a:firstline . "," . a:lastline . 's/&amp;/\&/g'
+	execute a:firstline . "," . a:lastline . 's/&quot;/\\"/g'
+	execute a:firstline . "," . a:lastline . "s/&apos;/'/g"
+	execute a:firstline . "," . a:lastline . 's/&euro;/€/g'
+	execute a:firstline . "," . a:lastline . 's/&auml;/ä/g'
+	execute a:firstline . "," . a:lastline . 's/&Auml;/Ä/g'
+	execute a:firstline . "," . a:lastline . 's/&ouml;/ö/g'
+	execute a:firstline . "," . a:lastline . 's/&Ouml;/Ö/g'
+	execute a:firstline . "," . a:lastline . 's/&hellip;/…/g'
+	execute a:firstline . "," . a:lastline . 's/&middot;/·/g'
+	execute a:firstline . "," . a:lastline . 's/&bull;/•/g'
+	execute a:firstline . "," . a:lastline . 's/&ndash;/–/g'
+	execute a:firstline . "," . a:lastline . 's/&frac12/½/g'
+endfunction
+command -range HTMLentities <line1>,<line2>call HTMLentities()
+
+command -range  PassRange <line1>,<line2>call PrintGivenRange()
+command -range  Translate execute "!crow %"
+
+autocmd BufEnter NERD_tree_* nmap f<CR> <CR> :NERDTreeFocus <CR>
+autocmd BufLeave NERD_tree_* unmap f<CR>
 
 " Close if NERDTree is last window
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
