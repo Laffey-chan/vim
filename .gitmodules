@@ -1,5 +1,5 @@
 [submodule "pack/base/start/nerdtree"]
-	path = pack/base/start/nerdtree
+	path = pack/nerdtree/opt/nerdtree
 	url = https://github.com/preservim/nerdtree.git
 [submodule "pack/base/start/ultisnips"]
 	path = pack/base/start/ultisnips
