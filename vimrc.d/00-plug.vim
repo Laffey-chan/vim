@@ -19,22 +19,32 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'https://gitlab.com/yrhki/vim-blackout.git'
 
-"Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --all' }          " Completion
-Plug 'vim-syntastic/syntastic'          " Syntax checking
+" Completion
+"Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --all' }
+" Syntax checking
+Plug 'vim-syntastic/syntastic'
 
-Plug 'SirVer/ultisnips'                 " Snippets
-Plug 'honza/vim-snippets'               " 
+" Snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
-Plug 'plasticboy/vim-markdown'          " Markdown
-"Plug 'jceb/vim-orgmode'                 " org-mode
+" Markdown
+Plug 'plasticboy/vim-markdown'
+" org-mode
+"Plug 'jceb/vim-orgmode'
 
-Plug 'vim-airline/vim-airline'          " Status/tabline
+" Status/tabline
+Plug 'vim-airline/vim-airline'
 
-Plug 'tpope/vim-fugitive'               " Git
-Plug 'aserebryakov/vim-todo-lists'      " Todo lists
+" Git
+Plug 'tpope/vim-fugitive'
+" Todo lists
+Plug 'aserebryakov/vim-todo-lists'
 
-Plug 'tpope/vim-speeddating'            " Increment dates
-Plug 'junegunn/vim-easy-align'          " Easily align and format
+" Increment dates
+Plug 'tpope/vim-speeddating'
+" Easily align and format
+Plug 'junegunn/vim-easy-align'
 
 call plug#end()
 
