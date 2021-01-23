@@ -4,6 +4,6 @@ set tabstop=2
 set foldmethod=indent
 set foldlevel=1
 
-1,$foldclose
+silent command foldclose
 
 nnoremap <Space> :OrgCheckBoxToggle <CR>
